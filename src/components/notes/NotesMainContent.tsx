@@ -16,10 +16,21 @@ const NotesMainContent = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            let userName = localStorage.getItem("user_name") || "";
+            if (userName === "") {
+                router.push("/");
+            }
+        }
+    }, [userName]);
+
     const handleSignOut = async () => {
         // Remove cookies instead of localStorage
         Cookies.remove("accessToken");
         Cookies.remove("user_name");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("user_name");
         router.push("/");
     };
 

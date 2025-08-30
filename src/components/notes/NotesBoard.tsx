@@ -36,15 +36,16 @@ const NotesBoard: React.FC = () => {
   // Use ref for the confirmation modal instead of state
   const confirmModalRef = useRef<ConfirmationModalRef>(null);
 
-  const {
-    data,
-    error: updateError,
-    put: updateNote,
-  } = useAxios(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`, true);
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchNotes());
+      if (typeof window !== 'undefined') {
+        let token = localStorage.getItem("accessToken") || "";
+        if (token) {
+          dispatch(fetchNotes());
+        }
+      }
+
     }
   }, [dispatch, status]);
 
