@@ -6,10 +6,15 @@ import NotesBoard from "@/components/notes/NotesBoard";
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 
-const   NotesMainContent = () => {
+const NotesMainContent = () => {
     const [userName, setUserName] = useState<string>("");
     const router = useRouter();
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setUserName(localStorage.getItem("user_name") || "");
+        }
+    }, []);
 
     const handleSignOut = async () => {
         // Remove cookies instead of localStorage
