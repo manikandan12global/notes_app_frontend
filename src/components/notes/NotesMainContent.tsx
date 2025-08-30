@@ -6,7 +6,7 @@ import NotesBoard from "@/components/notes/NotesBoard";
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 
-const NotesMainContent = () => {
+const   NotesMainContent = () => {
     const [userName, setUserName] = useState<string>("");
     const router = useRouter();
 

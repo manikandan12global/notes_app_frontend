@@ -104,7 +104,13 @@ export const updateNoteAsync = createAsyncThunk(
       note_title: note.title,
       note_content: note.content,
       color: note.color,
-    });
+    },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'x-access-token': token
+        }
+      });
     return response.data;
   }
 );
